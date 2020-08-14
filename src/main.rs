@@ -7,6 +7,7 @@
 //! It just fetches all pages that include a certain template and prints them.
 
 use mediawiki::api::Api;
+use mediawiki::method::Method;
 use std::{env, error::Error, time::Instant};
 
 #[macro_use]
@@ -39,7 +40,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     println!("Requesting page ID {}", PAGE_ID);
 
     let params = map!(action: "query", prop: "transcludedin", pageids: PAGE_ID);
-    let result = api.query_api_json(&params, "GET").await?;
+    let result = api.query_api_json(&params, Method::Get).await?;
     let page = &result["query"]["pages"][PAGE_ID];
 
     println!("==> Request finished in {:.2?}", time.elapsed());
