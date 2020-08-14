@@ -21,3 +21,4 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 mediawiki = { git = "https://github.com/magnusmanske/mediawiki_rust", version = "0.2" }
+tokio = "0.2"

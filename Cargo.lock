@@ -2252,6 +2252,7 @@ name = "wikibot"
 version = "0.1.0"
 dependencies = [
  "mediawiki",
+ "tokio 0.2.22",
 ]
 
 [[package]]
