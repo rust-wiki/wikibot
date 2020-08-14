@@ -20,5 +20,5 @@ maintenance = { status = "actively-developed" }
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-mediawiki = { git = "https://github.com/magnusmanske/mediawiki_rust", version = "0.2" }
+mediawiki = { git = "https://github.com/rust-wiki/mediawiki_rust", version = "0.2", branch = "update-deps" }
 tokio = "0.2"
