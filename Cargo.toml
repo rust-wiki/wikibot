@@ -1,0 +1,23 @@
+[package]
+name = "wikibot"
+version = "0.1.0"
+description = "Bot for automating tasks in the Rust wiki, https://runrust.miraheze.org"
+authors = [
+    "Markus RÃ¸yset <maroider@protonmail.com>",
+    "Ludwig Stecher <ludwig.stecher@gmx.de>",
+]
+edition = "2018"
+categories = ["authentication", "web-programming::http-client"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/rust-wiki/wikibot"
+homepage = "https://runrust.miraheze.org"
+readme = "README.md"
+publish = false
+
+[badges]
+maintenance = { status = "actively-developed" }
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+mediawiki = { git = "https://github.com/magnusmanske/mediawiki_rust", version = "0.2" }
