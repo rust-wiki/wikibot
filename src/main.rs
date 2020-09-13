@@ -7,13 +7,14 @@
 //! It just fetches all pages that include a certain template and prints them.
 
 use mediawiki::api::Api;
-use mediawiki::method::Method;
-use std::{env, error::Error, time::Instant};
+use std::{error::Error, time::Instant};
+
+use clap::Clap;
 
 #[macro_use]
 mod macros;
 
-const API_URL: &str = "https://runrust.miraheze.org/w/api.php";
+const DEFAULT_API_URL: &str = "https://runrust.miraheze.org/w/api.php";
 const DEFAULT_USER: &str = "Dev-WikiBot";
 const PAGE_ID: &str = "97";
 
@@ -23,14 +24,16 @@ const PAGE_ID: &str = "97";
 /// where this page is transcluded.
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
+    let opts = Opts::parse();
+
     let time = Instant::now();
 
-    let lgname = env::var("USER_NAME").unwrap_or(String::from(DEFAULT_USER));
-    let lgpassword = env::var("PASSWORD").expect("PASSWORD environment variable missing");
+    let lgname = opts.username;
+    let lgpassword = opts.password;
 
     println!("Logging in as {}", lgname);
 
-    let mut api = Api::new(API_URL).await?;
+    let mut api = Api::new(&opts.api_url).await?;
     api.set_user_agent("wikibot");
     api.login(lgname, lgpassword).await?;
 
@@ -59,8 +62,26 @@ async fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-/// To check if password is set in CI
-#[test]
-fn test_password_set() {
-    assert!(env::var("PASSWORD").is_ok());
+#[derive(Clap)]
+struct Opts {
+    /// Usually "https://<host>/w/api.php"
+    #[clap(long, env, default_value=DEFAULT_API_URL)]
+    api_url: String,
+    /// The username of the bot account
+    #[clap(long, env, default_value=DEFAULT_USER)]
+    username: String,
+    /// The password of the bot account
+    #[clap(long, env)]
+    password: String,
+}
+
+#[cfg(test)]
+mod tests {
+    use std::env;
+
+    /// To check if password is set in CI
+    #[test]
+    fn test_password_set() {
+        assert!(env::var("PASSWORD").is_ok());
+    }
 }
