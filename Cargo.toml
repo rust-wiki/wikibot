@@ -21,5 +21,5 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 clap = "3.0.0-beta.1"
-mediawiki = { git = "https://github.com/magnusmanske/mediawiki_rust", version = "0.2" }
+mediawiki = { git = "https://github.com/rust-wiki/mediawiki_rust", rev = "e2c7983" }
 tokio = "0.2"
