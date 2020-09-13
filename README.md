@@ -6,6 +6,8 @@ Bot for automating tasks in the [Rust wiki](https://runrust.miraheze.org)
 
 First, make sure you have [Rust](https://www.rust-lang.org) and [Cargo](https://doc.rust-lang.org/cargo/index.html) installed.
 
+If you're on Linux, you'll need to have OpenSSL installed.
+
 The bot reads two environment variables, `USERNAME` and `PASSWORD`. The default username is `Dev-WikiBot`. The password _must_ be specified:
 
 ```fish
@@ -13,6 +15,10 @@ The bot reads two environment variables, `USERNAME` and `PASSWORD`. The default 
 ```
 
 Use the `--release` flag to run the bot with optimizations.
+
+## Development
+
+The API which is wrapped by the `mediawiki` crate is documented [here](https://www.mediawiki.org/wiki/API:Main_page).
 
 ## License
 
