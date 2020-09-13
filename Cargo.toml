@@ -22,4 +22,5 @@ maintenance = { status = "actively-developed" }
 [dependencies]
 clap = "3.0.0-beta.1"
 mediawiki = { git = "https://github.com/rust-wiki/mediawiki_rust", rev = "e2c7983" }
+roxmltree = "0.13.0"
 tokio = "0.2"
